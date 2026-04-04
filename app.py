@@ -1,25 +1,5 @@
-# ── 確保 anthropic 套件已安裝（解決環境不一致問題）──────────────
-import subprocess
-import sys
-
-def install_package(package):
-    """
-    使用當前 Python 執行環境的 pip 安裝指定套件
-    確保安裝路徑與執行環境一致，避免 ModuleNotFoundError
-    """
-    subprocess.check_call(
-        [sys.executable, "-m", "pip", "install", package],
-        stdout=subprocess.DEVNULL,  # 隱藏安裝輸出，保持介面整潔
-        stderr=subprocess.DEVNULL
-    )
-
-try:
-    import anthropic
-except ModuleNotFoundError:
-    install_package("anthropic")
-    import anthropic
-
-# ── 其餘套件匯入 ──────────────────────────────────────────────
+# ── 套件匯入 ──────────────────────────────────────────────────
+import anthropic
 import streamlit as st
 import requests
 import pandas as pd
